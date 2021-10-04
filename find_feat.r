@@ -19,21 +19,24 @@ loadData <- function(drs) {
     return(spectra)
 }
 
-featMat <- function(spectra, type='feat') {
-    spectra <- transformIntensity(spectra, method="sqrt") 
+featMat <- function(spectra, type='feat', trans="sqrt",
+		    smooth="MovingAverage", detect="MAD",
+		    halfWindowSize=20, SNR=2, tolerance=0.002,
+		    minFrequency=0.25) {
+    spectra <- transformIntensity(spectra, method=trans) 
     spectra <- smoothIntensity(spectra, method="MovingAverage") 
     spectra <- removeBaseline(spectra) 
     spectra <- alignSpectra(spectra) 
     if(type=='aln'){
         return(spectra)
     }
-    peaks <- detectPeaks(spectra, method="MAD", 
-                         halfWindowSize=20, SNR=2)
+    peaks <- detectPeaks(spectra, method=detect, 
+                         halfWindowSize=halfWindowSize, SNR=SNR)
     if(type=='peaks'){
         return(peaks)
     }
-    peaks <- binPeaks(peaks, tolerance=0.002) 
-    peaks <- filterPeaks(peaks, minFrequency=0.25) 
+    peaks <- binPeaks(peaks, tolerance=tolerance) 
+    peaks <- filterPeaks(peaks, minFrequency=minFrequency) 
     featureMatrix <- intensityMatrix(peaks, spectra) 
     if(type=='feat'){
         rownames(featureMatrix) <- unlist(lapply(spectra, function(x) x@metaData$name)) 
