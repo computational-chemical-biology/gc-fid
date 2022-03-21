@@ -24,7 +24,7 @@ featMat <- function(spectra, type='feat', trans="sqrt",
 		    halfWindowSize=20, SNR=2, tolerance=0.002,
 		    minFrequency=0.25) {
     spectra <- transformIntensity(spectra, method=trans) 
-    spectra <- smoothIntensity(spectra, method="MovingAverage") 
+    spectra <- smoothIntensity(spectra, method=smooth) 
     spectra <- removeBaseline(spectra) 
     spectra <- alignSpectra(spectra) 
     if(type=='aln'){
