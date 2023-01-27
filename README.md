@@ -1,12 +1,13 @@
 ## GC-FID 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](http://colab.research.google.com/github/computational-chemical-biology/gc-fid/blob/master/explore_FID_data.ipynb)
 
-This repository uses [MALDIquant](https://cran.r-project.org/web/packages/MALDIquant/index.html) to process two-dimensional GC-FID data.
+This repository uses [MALDIquant](https://cran.r-project.org/web/packages/MALDIquant/index.html) to process two-dimensional GC-FID data. The repository is also companion material for the [publication](http://doi.org/10.1088/1752-7163/acb284).
 
 To convert the `.dat` spectra, [OpenChrom](https://lablicate.com/platform/openchrom) is used.
 
-![openchrom](img/Screenshot from 2021-09-30 09-56-53.png)
+![openchrom](img/openchrom.png)
 
-Open on [colab](http://colab.research.google.com/github/computational-chemical-biology/gc-fid/blob/master/explore_FID_data.ipynb)
+Open on 
 
 To install the conda env:
 
